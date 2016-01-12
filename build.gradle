@@ -1,10 +1,12 @@
 apply plugin: 'java'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 group 'com.revinate'
+archivesBaseName = 'assertj-json'
 version = '1.0.0-SNAPSHOT'
 
 jar {
@@ -30,6 +32,68 @@ test {
         afterSuite { desc, result ->
             if (!desc.parent) {
                 println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+            }
+        }
+    }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: System.env.SONATYPE_USER, password: System.env.SONATYPE_PASS)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: System.env.SONATYPE_USER, password: System.env.SONATYPE_PASS)
+            }
+
+            pom.project {
+                name 'AssertJ for JSON'
+                packaging 'jar'
+                artifactId 'assertj-json'
+                description 'A set of AssertJ assertions for JSON validation.'
+                url 'https://github.com/revinate/assertj-json'
+
+                scm {
+                    connection 'scm:git:git://github.com/revinate/assertj-json.git'
+                    developerConnection 'scm:git:ssh://git@github.com:revinate/assertj-json.git'
+                    url 'https://github.com/revinate/assertj-json'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'revinate'
+                        name 'Revinate, Inc'
+                    }
+                }
             }
         }
     }
