@@ -1,0 +1,12 @@
+language: java
+script: ./gradlew clean build
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+jdk:
+   - oraclejdk8
