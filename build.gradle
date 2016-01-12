@@ -52,7 +52,7 @@ artifacts {
 }
 
 def isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+    return version.contains("SNAPSHOT") == false
 }
 
 signing {
