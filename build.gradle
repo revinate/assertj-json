@@ -18,9 +18,21 @@ repositories {
 dependencies {
     compile 'org.assertj:assertj-core:3.2.0'
     compile 'com.fasterxml.jackson.core:jackson-core:2.4.6'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
     compile 'com.jayway.jsonpath:json-path:2.0.0'
 
     testCompile 'junit:junit:4.12'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+            }
+        }
+    }
 }
 
 task wrapper(type: Wrapper) {
