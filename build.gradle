@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group 'com.revinate'
+version = '1.0.0-SNAPSHOT'
+
+jar {
+    baseName = 'assertj-json'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.assertj:assertj-core:3.2.0'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.6'
+    compile 'com.jayway.jsonpath:json-path:2.0.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
