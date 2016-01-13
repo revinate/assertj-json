@@ -1,5 +1,5 @@
 language: java
-script: ./gradlew clean build
+script: ./gradlew clean build uploadArchives
 
 sudo: false
 
