@@ -7,7 +7,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 group 'com.revinate'
 archivesBaseName = 'assertj-json'
-version = '1.0.0'
+version = '1.0.1-SNAPSHOT'
 
 jar {
     baseName = 'assertj-json'
