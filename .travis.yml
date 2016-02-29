@@ -1,5 +1,5 @@
 language: java
-script: ./gradlew clean build uploadArchives
+script: ./gradlew clean build jacocoTR uploadArchives
 
 sudo: false
 
