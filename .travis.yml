@@ -16,7 +16,7 @@ before_install:
   - openssl aes-256-cbc -pass pass:$SONATYPE_PASS -in deploy/pubring.gpg.enc -out deploy/pubring.gpg -d
   - mkdir -p ~/.gradle
   - openssl aes-256-cbc -pass pass:$SONATYPE_PASS -in deploy/gradle.properties.enc -out ~/.gradle/gradle.properties -d
-  - pip install codecov
+  - pip install --user codecov
 
 after_success:
   - codecov
