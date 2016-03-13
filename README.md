@@ -2,8 +2,9 @@
 
 [![Build Status](https://travis-ci.org/revinate/assertj-json.svg?branch=master)](https://travis-ci.org/revinate/assertj-json)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.revinate/assertj-json/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.revinate/assertj-json)
-[![codecov.io](https://codecov.io/github/revinate/assertj-json/coverage.svg?branch=master)](https://codecov.io/github/revinate/assertj-json?branch=master)
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.revinate/assertj-json/badge.svg)](http://www.javadoc.io/doc/com.revinate/assertj-json)
+[![codecov.io](https://codecov.io/github/revinate/assertj-json/coverage.svg?branch=master)](https://codecov.io/github/revinate/assertj-json?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/be3090d018a64be19a6803178ae1b7ca)](https://www.codacy.com/app/jrglee/assertj-json)
 
 A set of AssertJ assertions to validate JSON.
 
