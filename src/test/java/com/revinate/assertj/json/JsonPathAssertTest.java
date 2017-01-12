@@ -5,6 +5,8 @@ import com.jayway.jsonpath.JsonPath;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static com.revinate.assertj.json.JsonPathAssert.assertThat;
 
 public class JsonPathAssertTest {
@@ -33,5 +35,12 @@ public class JsonPathAssertTest {
         DocumentContext documentContext = JsonPath.parse("[1,2,3]");
 
         assertThat(documentContext).jsonPathAsListOf("$", Integer.class).containsExactly(1, 2, 3);
+    }
+
+    @Test
+    public void jsonPathAsBigDecimal_shouldReadNumericValue() throws Exception {
+        DocumentContext documentContext = JsonPath.parse("0.3");
+
+        assertThat(documentContext).jsonPathAsBigDecimal("$").isEqualTo(new BigDecimal("0.3"));
     }
 }
