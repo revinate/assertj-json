@@ -4,6 +4,7 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.TypeRef;
 import org.assertj.core.api.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -53,5 +54,15 @@ public class JsonPathAssert extends AbstractAssert<JsonPathAssert, DocumentConte
     public <T> AbstractListAssert<?, ? extends List<? extends T>, T> jsonPathAsListOf(String path, Class<T> type) {
         return Assertions.assertThat(actual.read(path, new TypeRef<List<T>>() {
         }));
+    }
+
+    /**
+     * Extracts a JSON number using a JsonPath expression and wrap it in an {@link BigDecimalAssert}
+     *
+     * @param path JsonPath to extract the number
+     * @return an instance of {@link BigDecimalAssert}
+     */
+    public AbstractBigDecimalAssert<?> jsonPathAsBigDecimal(String path) {
+        return Assertions.assertThat(actual.read(path, BigDecimal.class));
     }
 }
