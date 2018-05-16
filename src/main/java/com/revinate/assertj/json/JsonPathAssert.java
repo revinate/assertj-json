@@ -51,7 +51,7 @@ public class JsonPathAssert extends AbstractAssert<JsonPathAssert, DocumentConte
      * @param type The type to cast the content of the array, i.e.: {@link String}, {@link Integer}
      * @return an instance of {@link ListAssert}
      */
-    public <T> AbstractListAssert<?, ? extends List<? extends T>, T, ?> jsonPathAsListOf(String path, Class<T> type) {
+    public <T> AbstractListAssert<?, ? extends List<? extends T>, T, ? extends AbstractAssert<?, T>> jsonPathAsListOf(String path, Class<T> type) {
         return Assertions.assertThat(actual.read(path, new TypeRef<List<T>>() {
         }));
     }
