@@ -1,5 +1,5 @@
 language: java
-script: ./gradlew build jacocoTR uploadArchives
+script: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew build jacocoTR uploadArchives; else ./gradlew build; fi'
 
 sudo: false
 
