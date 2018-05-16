@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.assertj:assertj-core:3.2.0'
+    compile 'org.assertj:assertj-core:3.5.0'
     compile 'com.fasterxml.jackson.core:jackson-core:2.4.6'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
     compile 'com.jayway.jsonpath:json-path:2.0.0'
