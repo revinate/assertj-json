@@ -49,6 +49,7 @@ public class JsonPathAssert extends AbstractAssert<JsonPathAssert, DocumentConte
      *
      * @param path JsonPath to extract the array
      * @param type The type to cast the content of the array, i.e.: {@link String}, {@link Integer}
+     * @param <T> The generic type of the type field
      * @return an instance of {@link ListAssert}
      */
     public <T> AbstractListAssert<?, ? extends List<? extends T>, T, ? extends AbstractAssert<?, T>> jsonPathAsListOf(String path, Class<T> type) {
@@ -64,5 +65,26 @@ public class JsonPathAssert extends AbstractAssert<JsonPathAssert, DocumentConte
      */
     public AbstractBigDecimalAssert<?> jsonPathAsBigDecimal(String path) {
         return Assertions.assertThat(actual.read(path, BigDecimal.class));
+    }
+
+    /**
+     * Extracts a JSON boolean using a JsonPath expression and wrap it in an {@link BooleanAssert}
+     *
+     * @param path JsonPath to extract the number
+     * @return an instance of {@link BooleanAssert}
+     */
+    public AbstractBooleanAssert<?> jsonPathAsBoolean(String path) {
+        return Assertions.assertThat(actual.read(path, Boolean.class));
+    }
+
+    /**
+     * Extracts a any JSON type using a JsonPath expression and wrap it in an {@link ObjectAssert}. Use this method
+     * to check for nulls or to do type checks.
+     *
+     * @param path JsonPath to extract the type
+     * @return an instance of {@link ObjectAssert}
+     */
+    public AbstractObjectAssert<?, Object> jsonPath(String path) {
+        return Assertions.assertThat(actual.read(path, Object.class));
     }
 }
