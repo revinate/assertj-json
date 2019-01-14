@@ -28,7 +28,7 @@ public class JsonPathAssert extends AbstractAssert<JsonPathAssert, DocumentConte
      * @param path JsonPath to extract the string
      * @return an instance of {@link StringAssert}
      */
-    public AbstractCharSequenceAssert<?, String> jsonPathAsString(String path) {
+    public AbstractStringAssert<?> jsonPathAsString(String path) {
         return Assertions.assertThat(actual.read(path, String.class));
     }
 
